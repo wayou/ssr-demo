@@ -18,7 +18,7 @@ $ node server.js
 
 ### notes
 
-In `server.js`, make the `public/index.html` public accessily 
+In `server.js`, make the `public/index.html` accessible. 
 
 ```js
 app.use(express.static("./"));
