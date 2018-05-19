@@ -1,0 +1,28 @@
+<html>
+<body>
+  <div id="container">
+    <!-- Populated by the JS below. -->
+  </div>
+</body>
+<script>
+function renderPosts(posts, container) {
+  const html = posts.reduce((html, post) => {
+    return `${html}
+      <li class="post">
+        <h2>${post.title}</h2>
+        <div class="summary">${post.summary}</div>
+        <p>${post.content}</p>
+      </li>`;
+  }, '');
+
+  // CAREFUL: assumes html is sanitized.
+  container.innerHTML = `<ul id="posts">${html}</ul>`;
+}
+
+(async() => {
+  const container = document.querySelector('#container');
+  const posts = await fetch('/posts').then(resp => resp.json());
+  renderPosts(posts, container);
+})();
+</script>
+</html>
